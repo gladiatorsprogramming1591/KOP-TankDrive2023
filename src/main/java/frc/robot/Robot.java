@@ -17,28 +17,33 @@ import frc.subsystems.Drivetrain;
     
   private final XboxController m_stick = new XboxController(0);
 
-  private Drivetrain m_drivetrain;
+  private RobotContainer m_robotContainer;
+
+  public Drivetrain m_drivetrain;
 
   @Override
   public void robotInit() {
     // We need to invert one side of the drivetrain so that positive voltages
     // result in both sides moving forward. Depending on how your robot's
     // gearbox is constructed, you might have to invert the left side instead.
-    m_drivetrain = new Drivetrain();
+    m_drivetrain = new Drivetrain(m_stick);
+    m_robotContainer = new RobotContainer(m_drivetrain);
   }
 
   @Override
   public void teleopPeriodic() {
     // Arcade drive: Y axis drives forward and backward, and the X turns left and right.
-    if(m_stick.getLeftBumper()){
-      m_drivetrain.driveToLevel();
-    }
-    else if(m_stick.getYButton()){
-      // DriveToAngleCommand command = new DriveToAngleCommand(m_drivetrain);
-      m_drivetrain.driveToAngle(-12);
-    } else {
-      m_drivetrain.arcadeDrive(-m_stick.getLeftY(), -m_stick.getRightX(),true);
-    }
+
+    // Below code was refactored, commenting out until tested.
+    // if(m_stick.getLeftBumper()){
+    //   m_drivetrain.driveToLevel();
+    // }
+    // else if(m_stick.getYButton()){
+    //   // DriveToAngleCommand command = new DriveToAngleCommand(m_drivetrain);
+    //   m_drivetrain.driveToAngle(-12);
+    // } else {
+    //   m_drivetrain.arcadeDrive(-m_stick.getLeftY(), -m_stick.getRightX(),true);
+    // }
 
   }
 }
