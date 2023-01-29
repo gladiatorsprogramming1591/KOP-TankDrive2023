@@ -1,13 +1,15 @@
 package frc.subsystems;
 
+import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import com.kauailabs.navx.frc.AHRS;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.FastDrive;
 
@@ -103,4 +105,9 @@ public class Drivetrain extends SubsystemBase {
         }
         return atAngle;
     }
+
+    @Override   //?
+    public void periodic(){
+        SmartDashboard.putBoolean("NavX Callibrating", navx.isCalibrating());
+  }
 }
